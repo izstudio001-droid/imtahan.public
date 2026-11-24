@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>İmtahana hazırlıq kanalı</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f0fbf9; --bg2:#dff5f1; --ink:#06302b; --muted:#3d6761;
+  --accent:#0a8f88; --glow:#12b8b0; --door:#b8642b; --line:#9fd3cc; --btn-ink:#ffffff;
+  --head:"Anton","Impact","Arial Narrow",sans-serif;
+  --body:"Nunito","Segoe UI",system-ui,sans-serif;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#04201d; --bg2:#073530; --ink:#e6fffb; --muted:#9fd2cb;
+    --accent:#5df2ee; --glow:#5df2ee; --door:#e0894a; --line:#16524b; --btn-ink:#032320;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#04201d; --bg2:#073530; --ink:#e6fffb; --muted:#9fd2cb;
+  --accent:#5df2ee; --glow:#5df2ee; --door:#e0894a; --line:#16524b; --btn-ink:#032320;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1.0625rem/1.65 var(--body)}
+.wrap{max-width:1040px;margin:0 auto;padding:0 1.25rem}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+
+/* hero */
+.hero{position:relative;overflow:hidden;background:radial-gradient(120% 70% at 50% 0%,var(--bg2),var(--bg));padding:3.5rem 0 4rem}
+.hero .wrap{display:grid;gap:2.5rem;align-items:center}
+h1{font:400 clamp(2.6rem,9vw,5rem)/1.04 var(--head);letter-spacing:.01em;margin:0 0 1.25rem;text-shadow:0 0 28px color-mix(in srgb,var(--glow) 55%,transparent)}
+.lead{font-size:1.2rem;color:var(--muted);max-width:34ch;margin:0 0 2rem}
+.btn{display:inline-block;background:var(--accent);color:var(--btn-ink);font:700 1.1rem var(--body);padding:.95rem 1.7rem;border-radius:999px;text-decoration:none;box-shadow:0 0 0 0 var(--glow);transition:box-shadow .25s,transform .2s}
+.btn:hover{box-shadow:0 0 28px 2px var(--glow);transform:translateY(-1px)}
+.btn.alt{background:transparent;color:var(--ink);border:2px solid var(--accent);margin-left:.5rem}
+
+/* the door: the memorable element */
+.door-scene{position:relative;height:300px;display:grid;place-items:end center}
+.door{position:relative;width:150px;height:230px;background:linear-gradient(160deg,var(--door),color-mix(in srgb,var(--door) 55%,#000));border-radius:10px 10px 0 0;box-shadow:0 0 0 6px color-mix(in srgb,var(--door) 70%,#000),0 0 70px 10px color-mix(in srgb,var(--glow) 45%,transparent);animation:open 2.2s .4s ease-out both}
+.door::after{content:"";position:absolute;right:16px;top:50%;width:14px;height:14px;border-radius:50%;background:#ffe9b0}
+.floor{position:absolute;bottom:0;left:10%;right:10%;height:2px;background:var(--line)}
+.letters{position:absolute;inset:0;pointer-events:none}
+.letters span{position:absolute;bottom:130px;left:50%;font:400 2rem var(--head);color:var(--glow);opacity:0;animation:rise 3.2s ease-out both;text-shadow:0 0 14px var(--glow)}
+@keyframes open{from{filter:brightness(.55)}to{filter:brightness(1.15)}}
+@keyframes rise{0%{opacity:0;transform:translate(0,0) rotate(0)}15%{opacity:1}100%{opacity:0;transform:translate(var(--x),-210px) rotate(var(--r))}}
+
+/* sections */
+section{padding:3.5rem 0}
+h2{font:400 clamp(1.9rem,5vw,2.8rem)/1.1 var(--head);margin:0 0 2rem;letter-spacing:.01em}
+.offer{display:grid;gap:1.75rem}
+.offer div{border-left:4px solid var(--accent);padding-left:1.1rem}
+.offer h3{margin:0 0 .3rem;font:700 1.25rem var(--body)}
+.offer p{margin:0;color:var(--muted);max-width:46ch}
+.alt-bg{background:var(--bg2)}
+.steps{list-style:none;margin:0;padding:0;display:grid;gap:1.25rem;counter-reset:s}
+.steps li{counter-increment:s;display:grid;grid-template-columns:3rem 1fr;gap:1rem;align-items:start}
+.steps li::before{content:counter(s);font:400 2rem/1 var(--head);color:var(--btn-ink);background:var(--accent);width:3rem;height:3rem;border-radius:50%;display:grid;place-items:center}
+.steps strong{display:block;font-size:1.15rem}
+.steps span{color:var(--muted)}
+.cta{text-align:center}
+.cta h2{margin-bottom:1rem}
+.cta p{color:var(--muted);margin:0 auto 2rem;max-width:36ch}
+footer{padding:2rem 0 2.5rem;color:var(--muted);text-align:center;font-size:.95rem}
+
+@media (min-width:820px){
+  .hero .wrap{grid-template-columns:1.25fr .75fr}
+  .offer{grid-template-columns:repeat(3,1fr)}
+}
+@media (prefers-reduced-motion:reduce){
+  .door,.letters span{animation:none}
+  .letters span{display:none}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <div>
+      <h1>İmtahanın yaxınlaşır? Hazırlığa bu gün başla.</h1>
+      <p class="lead">Mövzu izahları və faydalı dərslər bir yerdə, kanalımızda səni gözləyir.</p>
+      <a class="btn" href="#kanal" data-channel>Kanala keç</a><a class="btn alt" href="#nece">Necə başlayım?</a>
+    </div>
+    <div class="door-scene" aria-hidden="true">
+      <div class="letters" id="letters"></div>
+      <div class="door"></div>
+      <div class="floor"></div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section>
+    <div class="wrap">
+      <h2>Kanalda nə tapacaqsan</h2>
+      <div class="offer">
+        <div><h3>İmtahana hazırlıq</h3><p>Hazırlaşmaq üçün lazım olan materiallar bir yerdə toplanıb, axtarışa vaxt itirmirsən.</p></div>
+        <div><h3>Mövzu izahları</h3><p>Çətin mövzular sadə dillə izah olunur ki, nəyi niyə etdiyini başa düşəsən.</p></div>
+        <div><h3>Faydalı dərslər</h3><p>Dərsləri istədiyin vaxt izləyə və lazım olanda təkrar edə bilərsən.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="alt-bg" id="nece">
+    <div class="wrap">
+      <h2>Üç addımda başla</h2>
+      <ol class="steps">
+        <li><div><strong>Kanala keç</strong><span>Yuxarıdakı və ya aşağıdakı düyməyə bas.</span></div></li>
+        <li><div><strong>Mövzunu seç</strong><span>Hazırlaşdığın mövzunun izahına və dərsinə bax.</span></div></li>
+        <li><div><strong>Hər gün bir az öyrən</strong><span>Düzgün hazırlıq uğura gedən yoldur.</span></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="cta" id="kanal">
+    <div class="wrap">
+      <h2>Vaxt itirmə, öyrənməyə elə indi başla!</h2>
+      <p>Uğura gedən yol düzgün hazırlıqdan başlayır.</p>
+      <a class="btn" href="#kanal" data-channel>Kanala keç</a>
+    </div>
+  </section>
+</main>
+
+<footer><div class="wrap">İmtahana hazırlıq kanalı · WhatsApp</div></footer>
+
+<script>
+// Kanalın real ünvanını bura yaz, bütün düymələr avtomatik ona keçəcək.
+var CHANNEL_URL = "https://whatsapp.com/channel/0029VbBiIumJUM2ibUHCVE1G";
+if (CHANNEL_URL) {
+  document.querySelectorAll("[data-channel]").forEach(function (a) { a.href = CHANNEL_URL; });
+}
+// Qapıdan çıxan hərflər (videodakı effektə uyğun)
+var box = document.getElementById("letters");
+"ABCÇDEƏFGĞHXIİJKQLMNOÖPRSŞTUÜVYZ".split("").slice(0, 14).forEach(function (ch, i) {
+  var s = document.createElement("span");
+  s.textContent = ch;
+  s.style.setProperty("--x", (Math.random() * 220 - 110).toFixed(0) + "px");
+  s.style.setProperty("--r", (Math.random() * 80 - 40).toFixed(0) + "deg");
+  s.style.marginLeft = (Math.random() * 60 - 30).toFixed(0) + "px";
+  s.style.animationDelay = (0.8 + i * 0.18).toFixed(2) + "s";
+  box.appendChild(s);
+});
+</script>
+</body>
+</html>
